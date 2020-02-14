@@ -11,5 +11,20 @@ The following topics **must** me fulfilled until the end of my undergraduate cou
 - [ ] Greedy Algorithm
 - [ ] Dynamic Programming 
 - [ ] Backtracking
+- [ ] Math
+- [ ] Bitwise operations/algo
+- [ ] Geometric algorithms
+- [ ] Pattern searching
 
 ## DATA STRUCTURES
+- [x] Arrays
+- [x] Matrix
+- [ ] Trees
+- [ ] BST
+- [ ] Heap
+- [ ] Hashing
+- [ ] Graphs
+- [ ] Strings
+- [ ] Stack
+- [ ] Queue 
+
