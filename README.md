@@ -28,3 +28,5 @@ The following topics **must** me fulfilled until the end of my undergraduate cou
 - [ ] Stack
 - [ ] Queue 
 
+
+Moreover, all of these questions must be solved: https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/
