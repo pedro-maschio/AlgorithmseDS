@@ -21,7 +21,7 @@ The following topics **must** me fulfilled until the end of my undergraduate cou
 - [x] Matrix
 - [ ] Trees
 - [ ] BST
-- [ ] Heap
+- [x] Heap (min and max)
 - [ ] Hashing
 - [ ] Graphs
 - [ ] Strings
@@ -33,7 +33,7 @@ The following topics **must** me fulfilled until the end of my undergraduate cou
 * Python (beginner)
 * C++ (beginner)
 * MySQL (intermediate)
-* Linux (intermediate)
+* Linux (beginner)
 
 
 Moreover, all of these questions must be solved: https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/
