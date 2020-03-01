@@ -27,6 +27,8 @@ class MinHeap {
 
         int right(int i) { return (2*i + 2); }
 
+        int findElement(int v);
+
         int extractMin();
 
         void decreaseKey(int i, int new_val);
@@ -68,6 +70,15 @@ void MinHeap::decreaseKey(int i, int new_val) {
         swap(&harr[i], &harr[parent(i)]);
         i = parent(i);
     }
+}
+
+// find the index of a given element v. O(n) time -> improve it!!
+int MinHeap::findElement(int v) {
+    for(int i = 0; i < capacity; i++) {
+        if(harr[i] == v)
+            return i;
+    }
+    return -1;
 }
 
 int MinHeap::extractMin() {
