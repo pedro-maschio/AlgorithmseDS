@@ -1,7 +1,5 @@
-/*
-    Solution for the problem 2959 from URI Online Judge
-    https://www.urionlinejudge.com.br/judge/pt/problems/view/2959
-*/
+//https://www.urionlinejudge.com.br/judge/pt/problems/view/2959
+
 #include <bits/stdc++.h>
 using namespace std;
 

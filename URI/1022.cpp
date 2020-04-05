@@ -1,7 +1,5 @@
-/*
-    Solution for the problem 1022 from URI Online Judge
-    https://www.urionlinejudge.com.br/judge/pt/problems/view/1022
-*/
+// https://www.urionlinejudge.com.br/judge/pt/problems/view/1022
+
 
 #include <iostream>
 

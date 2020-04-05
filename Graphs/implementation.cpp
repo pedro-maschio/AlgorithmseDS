@@ -15,7 +15,35 @@ class Graph {
         bool isReachable(int u, int v); // check if there's a path from u to v;
         void DFSUtil(int v, bool visited[]);
         void DFS(int v);
+        void BFS(int s);    
 };
+
+void Graph::BFS(int s) {
+    bool *visited = new bool[V];
+
+    for(int i = 0; i < V; i++)
+        visited[i] = false;
+    list<int> queue;
+
+    visited[s] = true;
+    queue.push_back(s);
+
+    while(!queue.empty()) {
+        s = queue.front();
+        cout << s << " ";
+        queue.pop_front();
+
+        vector<int>::iterator it;
+        for(it = adj[s].begin(); it != adj[s].end(); it++) {
+            if(!visited[*it]) {
+                visited[*it] = true;
+                queue.push_back(*it);
+            }
+        }
+
+    }
+
+}
 
 void Graph::DFSUtil(int v, bool visited[]) {
     visited[v] = true;

@@ -41,6 +41,32 @@ void preOrder(Node *head) {
     preOrder(head->right);
 }
 
+// Iterative solution
+    vector<int> preorderTraversal(Node* root) {
+        vector<int> resultado;
+        list<Node *> fila;
+        if(root) {
+            fila.push_front(root);
+            while(!fila.empty()) {
+                Node *no = fila.front();
+                fila.pop_front();
+                resultado.push_back(no->data);
+
+                /* We first add the right node, since we are piling, in the
+                end, the left node will be the first to be pushed back in the result
+                */
+                if(no->right != nullptr)
+                    fila.push_front(no->right);
+                if(no->left != nullptr)
+                    fila.push_front(no->left);
+
+ 
+
+            }
+        } 
+        return resultado;
+    }
+
 void inOrder(Node *head) {
     if(!head)
         return;
@@ -78,6 +104,8 @@ int main() {
     cout << endl;
     posOrder(head);
 
-
+    vector<int> res = preorderTraversal(head);
+    for(int i = 0; i < res.size(); i++)
+        cout << res[i] << " ";
     return 0;
 }
