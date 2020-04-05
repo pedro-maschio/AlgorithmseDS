@@ -31,7 +31,7 @@ The following topics **must** me fulfilled until the end of my undergraduate cou
 ## This is a list of my current technical skills, as well as my proficiency in such technologies:
 
 * Python (beginner)
-* C++ (beginner)
+* C++ (intermediate)
 * MySQL (intermediate)
 * Linux (beginner)
 
