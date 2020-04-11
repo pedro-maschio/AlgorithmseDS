@@ -57,6 +57,20 @@ void exibeLista(ListNode *head) {
     }
 }
 
+// return the node in the middle of the list using two pointer technique
+ListNode * returnMiddle(ListNode *head) {
+    ListNode *a = head;
+    ListNode *b = head;
+
+    while(b != nullptr) {
+        b = b->next;
+        if(b == nullptr)    
+            return a;
+        a = a->next;
+        b = b->next;
+    }
+}
+
 int main() {
     int n, v;
     ListNode *head = nullptr;
