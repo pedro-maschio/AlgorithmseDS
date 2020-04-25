@@ -2,6 +2,7 @@
 #include <vector>
 
 using namespace std;
+
 void swap(int &a, int &b) {
     int c = a;
     a = b;

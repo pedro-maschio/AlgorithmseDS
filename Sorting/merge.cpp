@@ -14,7 +14,7 @@ void merge(vector<int>& arr, int l, int m, int r) {
     for(int j = 0; j < n2; j++)
         R[j] = arr[m+j+1];
     
-    int i, j, k;
+    int i, j, k;    
     i = j = 0;
     k = l;
 
