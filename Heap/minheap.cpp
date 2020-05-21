@@ -119,20 +119,19 @@ void MinHeap::MinHeapify(int i) {
 }
 
 int main() { 
-    MinHeap h(11);
+    int n;
 
-    h.insertKey(3); 
-    h.insertKey(2); 
-    h.deleteKey(1); 
-    h.insertKey(15); 
-    h.insertKey(5); 
-    h.insertKey(4); 
-    h.insertKey(45); 
+    cin >> n;
 
-    cout << h.extractMin() << endl;
-    cout << h.getMin() << endl;
-    h.decreaseKey(2, 1);
-    cout << h.getMin() << endl;
+    MinHeap teste(n);
+
+    for(int i = 0; i < n; i++) {
+        teste.insertKey(rand()%100000);
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << teste.extractMin() << endl;
+    }
 
     return 0; 
 } 

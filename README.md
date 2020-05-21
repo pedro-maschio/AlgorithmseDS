@@ -8,32 +8,32 @@ The following topics **must** me fulfilled until the end of my undergraduate cou
 - [x] Searching
 - [x] Sorting
 - [x] Recursion
-- [ ] Greedy Algorithm
+- [ ] Greedy Algorithms
 - [ ] Dynamic Programming 
 - [ ] Backtracking
 - [ ] Math
-- [ ] Bitwise operations/algo
+- [x] Bitwise operations/algo
 - [ ] Geometric algorithms
 - [ ] Pattern searching
 
 ## DATA STRUCTURES
 - [x] Arrays
 - [x] Matrix
-- [ ] Trees
-- [ ] BST
+- [x] Trees
+- [x] BST
 - [x] Heap (min and max)
 - [ ] Hashing
 - [ ] Graphs
-- [ ] Strings
-- [ ] Stack
-- [ ] Queue 
+- [x] Strings
+- [x] Stacks
+- [x] Queue s
 
 ## This is a list of my current technical skills, as well as my proficiency in such technologies:
 
-* Python (beginner)
+* Python (intermediate)
 * C++ (intermediate)
 * MySQL (intermediate)
-* Linux (beginner)
+* Linux (intermediate)
 
 
 Moreover, all of these questions must be solved: https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/

@@ -2,89 +2,144 @@
 
 using namespace std;
 
-class ListNode {
-    public:
-        int data;
-        ListNode *next;
 
-        ListNode(int d): data(d), next(nullptr) {}
+struct SingleNode {
+    int val;
+    struct SingleNode* next;
+    SingleNode(int x) : val(x),next(nullptr){}
+};
+class MyLinkedList {
+public:
+    
+    SingleNode *head,*tail;
+    int size;
+    
+    MyLinkedList() {
+        head = tail = nullptr;
+        size = 0;
+    }
+    
+    
+    int get(int index) {
+        
+        auto temp = head;
+        
+        while(temp != nullptr && index > 0) {
+            temp = temp->next;
+            index--;
+        }
+        
+        if (temp)
+            return temp->val;
+        
+        return -1;
+    }
+    
+   
+    void addAtHead(int val) {
+        
+        if(size == 0){ // first element logic
+            head = tail = new SingleNode(val);
+            size++;
+            return;
+        }
+        
+        auto newNode = new SingleNode(val);
+        newNode -> next = head;
+        head = newNode;
+        size++;
+    }
+    
+
+    void addAtTail(int val) {
+        
+        if(size == 0){
+            head = tail = new SingleNode(val);
+            size++;
+            return;
+        }
+        
+        auto newNode = new SingleNode(val);
+        tail -> next = newNode;
+        tail = newNode;
+        size++;
+    }
+   
+    void addAtIndex(int index, int val) {
+        // if adding at begin/end use pre exist methods
+        if(index == 0 or index == size) {
+            if(index==0)
+                addAtHead(val);
+            else
+                addAtTail(val);
+            return;
+        }
+        
+        auto temp = head;
+        while(temp != nullptr && index > 1) {
+            temp = temp->next;
+            index--;
+        }
+        
+        auto newNode = new SingleNode(val);
+
+        newNode->next =temp->next;
+        temp->next = newNode;
+        size++;
+    }
+    
+    void deleteAtIndex(int index) {
+        if(index >= size) return;
+        
+        bool tailChanged = (index == size-1);
+        
+        if(index == 0) {
+            size--;
+            auto temp = head;
+            head = head -> next;
+            delete temp;
+            
+            if (size == 0)
+                tail = head; // last element logic
+            
+            return;
+        }
+        
+        
+        auto temp = head;
+        while(temp != nullptr && index > 1) {
+            temp = temp->next;
+            index--;
+        }
+        
+        auto curr = temp->next;
+        temp->next = curr ? curr->next : nullptr;
+        size--;
+        delete curr;
+        
+        if(tailChanged)
+            tail = temp;
+    }
+    
+    int length(){
+        return size;
+    }
+
+    bool hasCycle() {
+        SingleNode *slow = head;
+        SingleNode *fast = head;
+        
+        while(fast && fast->next) {
+            fast = fast->next->next;
+            slow = slow->next;
+            if(slow == fast)
+                return true;
+
+        }
+        return false;
+    }
 };
 
-ListNode * merge(ListNode *l1, ListNode *l2) {
-    ListNode fake(100);
-    ListNode *last = &fake;
-
-    while(l1 != nullptr && l2 != nullptr) {
-        if(l1->data <= l2->data) {
-            last->next = l1;
-            last = l1;
-            l1 = l1->next;
-        } else {
-            last->next = l2;
-            last = l2;
-            l2 = l2->next;   
-        }
-    }
-    if(l1 != nullptr) {
-        last->next = l1;
-    }
-    if(l2 != nullptr)
-        last->next = l2;
-        
-    return fake.next;
-}
-
-ListNode* create(int data) {
-    return new ListNode(data);
-}
-
-ListNode* insere(ListNode *head, int data) {
-    if(!head) {
-        head = create(data);
-        return head;
-    } else {
-        while(head->next != nullptr)
-            head = head->next;
-        head->next = create(data);
-    }
-    return head;
-}
-
-void exibeLista(ListNode *head) {
-    while(head != nullptr) {
-        cout << head->data << " ";
-        head = head->next;
-    }
-}
-
-// return the node in the middle of the list using two pointer technique
-ListNode * returnMiddle(ListNode *head) {
-    ListNode *a = head;
-    ListNode *b = head;
-
-    while(b != nullptr) {
-        b = b->next;
-        if(b == nullptr)    
-            return a;
-        a = a->next;
-        b = b->next;
-    }
-}
-
 int main() {
-    int n, v;
-    ListNode *head = nullptr;
-
-    cin >> n;
-    
-    for(int i = 0; i < n; i++) {
-        cin >> v;
-        if(i == 0)
-            head = insere(head, v);
-        else
-            insere(head, v);
-    }
-    exibeLista(head);
-    
     return 0;
 }

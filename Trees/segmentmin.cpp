@@ -33,11 +33,9 @@ int query(int i, int l, int r, int ql, int qr) {
     
     int mid = (r+l)/2;
     return min(query(2*i, l, mid, ql, qr), query(2*i+1, mid+1, r, ql, qr));
-}
+}   
 
 int main(){
-
-
     int n, q, l, r;
 
     cin >> n >> q;

@@ -8,25 +8,25 @@
 using namespace std;
 
 void merge(vector<int>& arr, int l, int middle, int r) {
-    int n1 = middle-l+1;
-    int n2 = r-middle;
-    vector<int> L(n1);
-    vector<int> R(n2);
+    queue<int> L, R;
 
-    for(int i = 0; i < n1; i++) L[i] = arr[i+l];
-    for(int i = 0; i < n2; i++) R[i] = arr[i+middle+1];
-
-    int i = 0, j = 0, k = l;
-    while(i < n1 && j < n2) {
-        if(L[i] < R[j]) 
-            arr[k++] = L[i++];
-        else 
-            arr[k++] = R[j++];
+    for(int i = l; i <= middle; i++)
+        L.push(arr[i]);
+    for(int i = middle+1; i <= r; i++)
+        R.push(arr[i]);
+    
+    int i = l;
+    while(!(L.empty() || R.empty())) {
+        if(L.front() <= R.front())
+            arr[i++] = L.front(), L.pop();
+        else
+            arr[i++] = R.front(), R.pop();
     }
-    while(i < n1)
-        arr[k++] = L[i++];
-    while(j < n2)
-        arr[k++] = R[j++];
+
+    while(!L.empty()) 
+        arr[i++] = L.front(), L.pop();
+    while(!R.empty())
+        arr[i++] = R.front(), R.pop();
 
 }
 
