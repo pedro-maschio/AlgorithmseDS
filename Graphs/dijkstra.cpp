@@ -9,7 +9,6 @@ using namespace std;
 
 const int maxN = 1e3;
 
-
 vector<pair<int, int>> adj[maxN];
 
 void addEdge(int u, int v, int w) {
@@ -28,7 +27,7 @@ void dijkstra(int s, int n) {
 
     priority_queue<pair<int, int>> fila_prioridades;
 
-    // distancia / vertice
+    // distance / edge
     fila_prioridades.push({0, s});
     distance[s] = 0;
 
