@@ -1,58 +1,93 @@
 #include <bits/stdc++.h>
-
-// # DEFINES # //
+ 
 #define ll long long
-#define EPS 1e-9
-const ll M = 1000000007;
+#define endl '\n'
+const ll INF = (ll)(1e18);
+const ll MOD = 1000000007;
+const ll MAX = 1010;
 using namespace std;
-const ll N = 1e6;
-int t[4*N];
-int arr[N];
 
-void build(int i, int l, int r) {
-    if(l == r) {
-        t[i] = arr[l];
-    } else {
-        int m = (l+r)/2;
+vector<ll> tree;
+vector<int> vetor;
 
-        build(2*i, l, m);
-        build(2*i+1, m+1, r);
-        t[i] = t[2*i] + t[2*i+1];
-    }
+
+
+void build(int l, int r, int no) {
+	if(l == r) {
+		tree[no] = vetor[l];
+		return;
+	}
+
+	int mid = (l + r) / 2;
+
+	build(l, mid, 2 * no);
+	build(mid + 1, r, 2 * no + 1);
+
+	tree[no] = tree[2*no] + tree[2*no+1];
 }
 
-/* 
-    l and r = intervalo atual
-    ql and qr = intervalo da query
-*/
-int query(int i, int l, int r, int ql, int qr) {
-    if(ql <= l && qr >= r) // if the node is within the query( ql -- l --- r -- qr)
-        return t[i];
-    if(qr < l || ql > r)
-        return 0;
-    
-    int mid = (r+l)/2;
-    return query(2*i, l, mid, ql, qr) + query(2*i+1, mid+1, r, ql, qr);
+
+ll query(int A, int B, int l, int r, int no) {
+	if(r < A || B < l)
+		return 0;
+	if(l >= A && r <= B)
+		return tree[no];
+
+	int mid = (l + r)/2;
+
+	ll sumLeft = query(A, B, l, mid, 2*no);
+	ll sumRight = query(A, B, mid+1, r, 2*no+1);
+
+	return sumLeft + sumRight;
 }
 
-int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
+void update(int id, int v, int l, int r, int no) {
+	if(l == r) {
+		tree[no] = v;
+		return;
+	}
 
-    int n, q, l, r;
+	int mid = (l + r) / 2;
 
-    cin >> n >> q;
+	if(id <= mid) {
+		update(id, v, l, mid, 2*no);
+	} else {
+		update(id, v, mid+1, r, 2*no+1);
+	}
 
-    for(int i = 0; i < n; i++)
-        cin >> arr[i];
+	tree[no] = tree[2*no] +tree[2*no+1];
+}
 
-    build(1, 0, n-1);
+int main() {
+	// iostream::sync_with_stdio(false);
+	// cin.tie(0);
 
-    for(int i = 0; i < q; i++) {
-        cin >> l >> r;
-        cout << query(1, 0, n-1, l, r) << endl;
-    }
+	/*
+		1ª: definir o valor do vetor na posição i, para x, ou seja: vetor[i] = x;
+		2ª: calcular o valor da soma no intervalo [l, r]
+	*/
 
+	int n, q, tipo, l, r;
+
+	cin >> n >> q;
+
+	vetor.resize(n);
+	tree.resize(2*n);
+
+	for(auto &el: vetor) cin >> el;
+
+	build(0, n-1, 1);
+
+	for(int i = 0; i < q; i++) {
+		cin >> tipo >> l >> r;
+
+		if(tipo == 1) {
+			update(l, r, 0, n-1, 1);
+		} else {
+			cout << query(l, r, 0, n-1, 1) << endl;
+		}
+	}
+	
     return 0;
 }
+ 

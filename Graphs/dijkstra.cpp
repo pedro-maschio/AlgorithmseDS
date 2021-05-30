@@ -1,75 +1,62 @@
 #include <bits/stdc++.h>
-
+ 
 #define ll long long
-#define N (ll)(1e6)
-#define EPS (double)(1e-12)
-#define INF 1e8
-
+#define vii vector<int>
+#define pii pair<int, int>
+#define endl '\n'
+const ll INF = 10000000000;
+const ll MOD = 1000000007;
+const ll MAX = 100000;
 using namespace std;
 
-const int maxN = 1e3;
+vector<vector<pair<int, int>>> graph;
 
-vector<pair<int, int>> adj[maxN];
+void dijkstra(int start) {
+    vector<int> d(graph.size(), INF);
 
-void addEdge(int u, int v, int w) {
-    adj[u].push_back({v, w});
-    adj[v].push_back({u, w});
-}
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
 
-void dijkstra(int s, int n) {
-    int distance[n+1];
-    bool visited[n+1];
+    d[start] = 0;
+    pq.push({d[start], start});
 
-    for(int i = 0; i <= n; i++) {
-        distance[i] = INF;
-        visited[i] = false;
-    }
+    int dist, w, u, v;
 
-    priority_queue<pair<int, int>> fila_prioridades;
+    while(!pq.empty()) {
+        tie(dist, u) = pq.top();
+        pq.pop();
 
-    // distance / edge
-    fila_prioridades.push({0, s});
-    distance[s] = 0;
-
-    while(!fila_prioridades.empty()) {
-        int no = fila_prioridades.top().second;
-        fila_prioridades.pop();
-
-        if(visited[no])
+        if(dist > d[u])
             continue;
-        visited[no] = true;
+        
+        for(auto neighbor: graph[u]) {
+            tie(v, w) = neighbor;
 
-        for(auto u : adj[no]) {
-            int b = u.first, w = u.second;
-
-            if(distance[no]+w < distance[b]) {
-                distance[b] = distance[no]+w;
-                fila_prioridades.push({-distance[b], b});
+            if(d[u] + w < d[v]) {
+                d[v] = d[u] + w;
+                pq.push({d[v], v});
             }
         }
     }
-
-    for(int i = 0; i <= n; i++) {
-        cout << distance[i] << " ";
-    }
-    cout << endl;
 }
 
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr); cout.tie(nullptr);
 
-    int n, e, a, b, w;
+    // change all to ll, inf = 10^18 at least 
 
-    cin >> n >> e;
+    int n, m, u, v, w;
 
-    for(int i = 0; i < e; i++) {
-        cin >> a >> b >> w;
-        addEdge(a, b, w);
-    }
+    cin >> n >> m;
+
+    graph.resize(n+1);
     
-    dijkstra(1, n);
+    for(int i = 0; i < m; i++) {
+        cin >> u >> v >> w;
 
-    return 0;
-}
+        graph[u].push_back({v, w});
+    }
+
+    dijkstra(1);
+    
+}  

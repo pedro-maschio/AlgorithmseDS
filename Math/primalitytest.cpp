@@ -10,6 +10,8 @@ using namespace std;
     n is composite at least one factor MUST be less than sqrt(n).
 */
 bool isPrime(int n) {
+    if(n == 2)
+        return true;
     for(int d = 2; d*d <= n; d+= 2)
         if(n % d == 0)
             return false;
